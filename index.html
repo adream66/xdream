@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="mySwiper swiper-no-swiping" :noSwiping="false" :pagination="{ clickable: true, }" :modules="modules" :slidesPerView="tab_idx == 1 ? 3 : 5" :slidesPerGroup="tab_idx == 1 ? 3 : 4" :style="myswiper_comput">
+    <swiper-slide  :key="`swiper-one-${index}`" v-for="(tab, index) in tab_data">
+      <div class="q-mx-md cursor-pointer" @click="change_dialog(tab)" :class="[{'make-card': tab_idx == 1}]">
+        <div class="fs18 text-bold">{{ tab.text }}</div>
+        <div class="text-grey fs14">{{ tab.text_tips }}</div>
+        <img class="q-mt-md" :src="tab.imgs" alt="" style="display: flex; justify-content: center;">
+      </div>
+    </swiper-slide>
+  </swiper>
+  <script>
+
+  </script>
+</body>
+</html>

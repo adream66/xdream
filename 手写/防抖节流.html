@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="border: 1px solod pink;" onclick="handler">点击</div>
+<script>
+  let div = document.querySelector('div');
+  div.onclick = debounce(handler,2000)
+  function handler(a,b){
+    console.log(666);
+  }
+  // handler(1,2)
+  let obj = {}
+  function demo(){
+  console.log(888);
+}
+function debounce(fn, wait) {
+    let timeout = null;
+    console.log(111,this);
+    return function() {
+        let context = this;
+    console.log(222,this);
+
+        let args = arguments;
+        console.log(args);
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+          // fn()
+          fn.apply(context, args);
+          // console.log(222,this);
+        }, wait);
+   
+    };
+}
+
+debounce(demo,1000)
+// obj.aa(handler,1000)
+// console.log(obj.aa );
+
+function aa(...args){
+  // console.log('args',...args,args);
+  return function(){
+    console.log(arguments);
+  }
+}
+let x= aa(1,2,3,4)
+x(5,6,7,8);
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log(6666);
+    class Dream{
+      constructor(callback){
+
+      }
+    }
+    new Dream((resolve)=>{
+      resolve()
+    })
+
+    function fn(resolve){}
+    new Promise(fn);
+
+
+    // function Dream(callback){
+    //   function resolve(){}
+    //     callback(resolve)
+    // }
+    // new Dream((resolve)=>{
+    //   resolve()
+    // })
+
+    function text1() {
+      return new Promise((resolve,reject)=> {
+        setTimeout(() => {
+          console.log("ok1");
+          resolve('data1')
+        }, 3000);
+      });
+    }
+    function text2() {
+      return new Promise((resolve,reject) => {
+        setTimeout(() => {
+          console.log("ok2");
+          // resolve('data2')
+          reject('data2')
+
+        }, 2000);
+      })
+    }
+    function text3() {
+      return new Promise((resolve,reject) => {
+        setTimeout(() => {
+          console.log("ok3");
+          resolve('data3')
+        }, 1000);
+      })
+    }
+    
+    let P1 = Promise.all([text1(),text2(),text3()])
+    P1.then(res => {
+      console.log(res);
+    },err => {
+      console.log(err);
+    })
+  </script>
+</body>
+</html>
