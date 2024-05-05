@@ -1,5 +1,5 @@
 let b = 2
-
+let c = 777
 function filter_percent() {
   let percentag_danri = this.percent_limit_obj.percentag_dr //单日
   // 单日过滤值
