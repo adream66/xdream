@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // console.log(111);
+
+    // new Promise((resolve,reject) =>{
+    //   console.log(33);
+    //   setTimeout( () => {
+    //     console.log('定时器1');
+    //   },1000)
+    //   resolve('成功')
+    // }).then(res => {
+    //   console.log(res);
+    // })
+    // setTimeout(() => {
+    //   console.log('定时器2');
+    // }, 2000);
+    // console.log(22)
+    // // 111 33 22  成功 定时器1 定时器2
+    // try{
+    //   setTimeout(()=>{
+    //     throw new Error('错误1')
+    //   },800)
+    // } catch(err) {
+    //   console.log(err);
+    // }
+
+      new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          try{
+            throw new Error('错误')
+          }catch(e){
+            // console.log(e);
+            reject(e)
+          }
+        }, 200);
+      })
+      // .then(res =>{},rej=>{
+      //   console.log(rej);
+      // })
+      .then()
+      .catch(err => {
+        console.log(err);
+      })
+
+
+      async function fn(){
+        try{
+          await Promise.resolve().then(()=>{
+          throw new Error('错误2')
+        })
+        }
+       catch (e){
+        console.log(e);
+        }
+      }
+fn()
+
+
+
+
+
+
+
+    // try{
+    //   new Promise((resolve,reject)=>{
+    //     throw new Error('错误2')
+    //     resolve( )
+    //   }).then(res =>{
+    //     console.log(res);
+    //   })
+    // }catch(e){
+    //   console.log(e);
+    // }
+
+
+
+
+
+
+
+
+
+    let params ={ uid:this.user_id}
+      api_user.get_listAlbPayoutLimit(params).then((res) => {
+          let code = this.$lodash.get(res, "data.code");
+          let data = this.$lodash.get(res, "data.data") || [];
+          let msg = this.$lodash.get(res, "data.msg");
+          if (code == '0000000') {
+            let data_key1 = Object.values(data)
+            data_key1.forEach(item=>{
+              if(item.code == '0000000'){
+                 let key_data =  Object.keys(item.data)
+                      if(key_data[0] == '2'|| key_data[0] == '3'){
+                       
+                            let paicai_list =  Object.values(item.data)[0];
+                            console.log("paicai_list",paicai_list);
+
+                            let map = paicai_list.reduce((pre,next)=>{
+                              pre[next.sportName] = next
+                              return pre
+                            },{})  
+                     
+                            // this.data_paicai = []
+
+                            // data_paicai.forEach(item=>{
+                            //   let obj = {...item}
+                            //   obj.value = this.fomat_rate(map[item.sportName].usedMoneyPer)
+                            //   this.data_paicai.push(obj)
+                            // })
+                            }
+
+
+
+
+                      
+
+
+
+
+
+              }
+            }}}
+
+
+
+
+
+
+
+
+
+
+  </script> 
+</body>
+</html>
+
+
+
+"records": [
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 14:02:30",
+                "enable": 1,
+                "id": 8012,
+                "merchantGroup": "bbb",
+                "merchantType": "1122",
+                "merchants": "123,456",
+                "modifyTime": "2024-04-10 14:02:30",
+                "remark": "1122"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 14:01:54",
+                "enable": 1,
+                "id": 8011,
+                "merchantGroup": "aaaa",
+                "merchantType": "1122",
+                "merchants": "123",
+                "modifyTime": "2024-04-10 14:01:54",
+                "remark": "1122"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:55:41",
+                "enable": 1,
+                "id": 8010,
+                "merchantGroup": "356",
+                "merchantType": "1122",
+                "merchants": "66778,7788",
+                "modifyTime": "2024-04-10 13:55:41",
+                "remark": "1122"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:53:05",
+                "enable": 1,
+                "id": 8009,
+                "merchantGroup": "34",
+                "merchantType": "1122",
+                "merchants": "66778",
+                "modifyTime": "2024-04-10 13:53:05",
+                "remark": "1122"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:52:07",
+                "enable": 1,
+                "id": 8008,
+                "merchantGroup": "1133",
+                "merchantType": "1122",
+                "merchants": "",
+                "modifyTime": "2024-04-10 13:52:07",
+                "remark": "1122"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:51:21",
+                "enable": 1,
+                "id": 8007,
+                "merchantGroup": "1122",
+                "merchantType": "1122",
+                "merchants": "",
+                "modifyTime": "2024-04-10 13:51:21",
+                "remark": "1122"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:35:24",
+                "enable": 1,
+                "id": 8006,
+                "merchantGroup": "9900",
+                "merchantType": "9900",
+                "merchants": "",
+                "modifyTime": "2024-04-10 13:35:24",
+                "remark": "9900"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:23:04",
+                "enable": 1,
+                "id": 8005,
+                "merchantGroup": "7788",
+                "merchantType": "7788",
+                "merchants": "",
+                "modifyTime": "2024-04-10 13:23:04",
+                "remark": "7788"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:22:23",
+                "enable": 1,
+                "id": 8004,
+                "merchantGroup": "66778",
+                "merchantType": "66778",
+                "merchants": "",
+                "modifyTime": "2024-04-10 13:22:23",
+                "remark": "66778"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:17:42",
+                "enable": 1,
+                "id": 8003,
+                "merchantGroup": "33444",
+                "merchantType": "33444",
+                "merchants": "33444",
+                "modifyTime": "2024-04-10 13:17:42",
+                "remark": "33444"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:07:15",
+                "enable": 1,
+                "id": 8002,
+                "merchantGroup": "8899",
+                "merchantType": "8899",
+                "merchants": "8899",
+                "modifyTime": "2024-04-10 13:07:15",
+                "remark": "8899"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 13:02:28",
+                "enable": 1,
+                "id": 8001,
+                "merchantGroup": "5566",
+                "merchantType": "5566",
+                "merchants": "5566",
+                "modifyTime": "2024-04-10 13:02:28",
+                "remark": "5566"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 12:51:50",
+                "enable": 1,
+                "id": 8000,
+                "merchantGroup": "3344",
+                "merchantType": "3344",
+                "merchants": "3344",
+                "modifyTime": "2024-04-10 12:51:50",
+                "remark": "3344"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 12:38:16",
+                "id": 7999,
+                "merchantGroup": "7758",
+                "merchantType": "7758",
+                "merchants": "7758",
+                "modifyTime": "2024-04-10 12:38:16",
+                "remark": "te6666st"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 12:32:46",
+                "id": 7998,
+                "merchantGroup": "12888",
+                "merchantType": "antonio",
+                "merchants": "antonio,antonio",
+                "modifyTime": "2024-04-10 12:32:46",
+                "remark": "te6666st"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 11:59:40",
+                "id": 7997,
+                "merchantGroup": "666",
+                "merchantType": "456665",
+                "merchants": "test,test",
+                "modifyTime": "2024-04-10 11:59:40",
+                "remark": "te6666st"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 11:58:34",
+                "id": 7996,
+                "merchantGroup": "4545",
+                "merchantType": "4545",
+                "merchants": "test,test",
+                "modifyTime": "2024-04-10 11:58:34",
+                "remark": "test"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-10 11:49:53",
+                "id": 7995,
+                "merchantGroup": "111",
+                "merchantType": "111",
+                "merchants": "test,test",
+                "modifyTime": "2024-04-10 11:49:53",
+                "remark": "test"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-09 14:41:08",
+                "id": 7994,
+                "merchantGroup": "234324324",
+                "merchantType": "test1244",
+                "merchants": "code,cc,11,33,44,55,66",
+                "modifyTime": "2024-04-09 14:41:08",
+                "remark": "test"
+            },
+            {
+                "appIds": "新操盘中心",
+                "createTime": "2024-04-09 13:50:19",
+                "id": 7993,
+                "merchantGroup": "antonio13",
+                "merchantType": "test1244",
+                "merchants": "code,cc,11,33,44,55,66",
+                "modifyTime": "2024-04-09 13:50:19",
+                "remark": "test"
+            }
+        ],
+        "searchCount": true,
+        "size": 20,
+        "total": 28
+    },
+    "message": "操作成功"
