@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+    <style>
+        
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .outer-container {
+        padding: 15px;
+      }
+
+      .inner-container {
+        display: flex;
+        flex-wrap: wrap;
+          margin: -5px; 
+         /* 补偿子 div 之间的 margin，以保持整体布局正确 */
+      }
+
+      .item {
+        width: calc(25% - 10px); /* 计算每个 item 的宽度，减去 10px 的空隙 */
+        background-color: #ccc;
+        height: 100px; /* 设置子 div 的高度 */
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer-container">
+      <div class="inner-container">
+        <div class="item">10</div>
+        <div class="item">20</div>
+        <div class="item">30</div>
+        <div class="item">40</div>
+        <div class="item">50</div>
+        <div class="item">60</div>
+        
+      </div>
+    </div>
+    <div class="outer-container">
+      <div class="inner-container" id="box"></div>
+
+    </div>
+  </body>
+  <script>
+    let date = new Date().valueOf()
+    let find_
+    console.log(new Date().valueOf());
+
+    // let arr = new Array(1000000).fill("").map((item, index) => {
+    //   // return `<div class="item">${index}</div>`;
+    //   return index
+    // });
+    let obj = {}
+    let arr = new Array(1000000).fill("").map((item, index) => {
+      // return `<div class="item">${index}</div>`;
+       obj[index] = { id:index, value:Math.random()} 
+    });
+    // for(let i = 0; i<arr.length;i++){
+    //   if(arr[i] == 500000) {
+    //     find_ = arr[i]
+    //   }
+    // }
+    // find_ = arr.find(item => item == 500000)
+    // arr.forEach( item => {
+    //   if(item == 500000){
+    //     find_ = item
+    //   }
+    // })
+    console.log(obj['500000']);
+    console.log(new Date().valueOf());
+    // let box = document.getElementById('box')
+    // box.innerHTML = arr
+
+    let kind = {
+      "0":"足球",
+      "1":"蓝球",
+      "2":"排球",
+      "3":"乒乓球球",
+    }
+    let arrSport = [{
+      id:0,
+      value:"30%",
+      },
+      {
+        id:1,
+        value:"50%",
+
+      },
+      {
+        id:2,
+
+        value:"60%",
+
+      },
+      {
+        id:3,
+
+        value:"70%",
+      },
+    ]
+    arrSport = arrSport.reduce((pre,current) => {
+
+      pre[kind[current.id]] = current.value
+      return pre
+    },{})
+    console.log(arrSport);
+    
+  </script>
+</html>
