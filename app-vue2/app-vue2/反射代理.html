@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      a:1,
+      b:2,
+      get c(){
+        console.log('属性被读取a,b');
+        return this.a + this.b
+      }
+    }
+    // console.log(obj.c);
+    // console.log(Reflect.get(obj,"c"));
+    const p = new Proxy(obj,{
+      get(target,key,receiver) {
+        console.log(`正在读取属性${key}`);
+        // console.log("receiver",receiver);
+
+        // return target[key]
+        // console.log("receiver",receiver);
+        return Reflect.get(target,key,receiver)
+      },
+      set(target,key,value,receiver) {
+        console.log(`正在设置属性${key},新增为:${value}`);
+        target[key] = value
+        return value
+      }
+    })
+
+    // p.a
+    // p.b
+    p.c
+    // p.b= 20
+    // console.log('obj',obj,'---p',p);
+  </script>
+</body>
+</html>

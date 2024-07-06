@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #apple {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      position: absolute;
+      user-select: none;    
+    }
+  </style>
+</head>
+<body>
+  <div style="width: 800px; height: 800px; margin: 50px auto; border: 1px solid #bbb;">
+    <div id="apple">
+      小苹果
+    </div>
+  </div>
+  <script>
+    // document.documentElement.scrollTop = document.body.scrollTop = 0 页面滚动到顶部
+    // 定义鼠标坐标位置
+  
+    // 获取dom元素
+    let apple = document.getElementById('apple')
+    // 页面添加监听事件
+    document.addEventListener('DOMContentLoaded',() => {
+      apple.addEventListener('mousedown',handele_down)
+      let x = 0
+      let y = 0
+        // 鼠标点击事件
+        function handele_down (e) {
+          x= e.clientX
+          y= e.clientY
+          document.addEventListener('mousemove',handle_move)
+          document.addEventListener('mouseup',handle_moveup)
+        }
+
+        function handle_move(e) {
+         // 计算鼠标拖动距离
+         let moveX = e.clientX - x
+         let moveY =  e.clientY - y
+          // app.style.left = moveX +'px'  //这里的moveX计算有问题
+          // app.style.top =moveY
+          apple.style.left = apple.offsetLeft + moveX +'px'
+          apple.style.top = apple.offsetTop + moveY +'px'
+          // 在把 x y 坐标同步新的
+          x =  e.clientX 
+          y = e.clientY
+        }
+        function handle_moveup() {
+          // x = 0
+          // y=0
+          // document.removeEventListener('mousedown',handele_down)
+          document.removeEventListener('mouseup',handle_moveup)
+          document.removeEventListener('mousemove',handle_move)
+          // apple.removeEventListener()
+        }
+    })
+
+
+
+  </script>
+</body>
+</html>
