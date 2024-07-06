@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let b = 2
+
+    // new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     try {
+    //       let a = 1
+    //       a = 2
+    //       throw new Error("错误结果1");
+    //     } catch (error) {
+    //       // console.log(error);
+    //       reject(error)
+    //     }
+    //   }, 0);
+    // }).then(result => {
+    //   // console.log(result);
+    // }).catch(error => {
+    //   console.log(error);
+    // })
+
+    // try {
+    //   setTimeout(() => {
+    //     // const a = 1
+    //     // a = 2
+    //     throw new Error("错误2")
+    //   }, 200);
+    // } catch (error) {
+    //    console.log(error);
+    // }
+
+    // async function handlerError () {
+    //   try {
+    //     await Promise.resolve().then(() => {
+
+    //       throw new Error('err')
+
+    //     })
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+
+    // }
+    // Promise.resolve().then(()=>{
+    //  throw new Error("错误3") 
+    // }).catch(err =>{
+    //   console.log(err);
+    // })
+
+    // handlerError()
+
+
+
+
+
+    //     let main_component_zhuliebiao_title_arr = [
+    //   "序号",
+    //   "商户名称",
+    //   "商户类型",
+    //   "币种",
+    //   "投注用户数",
+    //   "新增用户数",
+    //   "注册用户数",
+    //   "投注笔数",
+    //   "有效投注笔数",
+    //   "投注额",
+    //   "有效投注额",
+    //   "提前结算平台盈利",
+    //   "平台盈利",
+    //   "盈利率",
+    //   "投注率",
+    // ];
+    // let all_config = {
+    //   //日期
+    //   日期: type => {
+    //     return {
+    //       title: "日期",
+    //       width: 150,
+    //       dataIndex: "financeDate",
+    //       key: "financeDate",
+    //       align: "center",
+    //       scopedSlots: type == "zongji" ? { customRender: "financeDate" } : { customRender: "financeDatee" }
+    //     };
+    //   },
+
+    //   //折叠
+    //   折叠: () => {
+    //     return {
+    //       title: "折叠",
+    //       width: 60,
+    //       dataIndex: "expandedbtn",
+    //       key: "expandedbtn",
+    //       align: "center",
+
+    //       scopedSlots: { customRender: "expandedbtn" }
+    //     };
+    //   },
+    //   序号: type => {
+    //     return {
+    //       //序号
+    //       title: "序号",
+    //       width: type == "biaoge" ? 100 : 150,
+    //       dataIndex: "_index",
+    //       key: "_index",
+    //       align: "center"
+    //     };
+    //   },
+    //   商户名称: type => {
+    //     return {
+    //       //商户名称
+    //       title: "商户名称",
+    //       width: type == "biaoge" ? 200 : 150,
+    //       dataIndex: "merchantName",
+    //       key: "merchantName",
+    //       align: "left",
+
+    //       scopedSlots: { customRender: "merchantName" }
+    //     };
+    //   },
+    //   商户类型: () => {
+    //     return {
+    //       //商户类型
+    //       title: "商户类型",
+    //       dataIndex: "agentLevel",
+    //       key: "agentLevel",
+    //       width: 200,
+    //       align: "left",
+
+    //       scopedSlots: { customRender: "agentLevel" }
+    //     };
+    //   },
+    // }
+    // const compute_function = (type, arr) => {
+    //   let result = [];
+
+    //   arr.map(x => {
+    //     // console.log("all_config[x]----",all_config[x],  "类型", typeof all_config[x]);
+    //     result.push(all_config[x]());
+    //   });
+    //   // console.log("result",result);
+    //   return result;
+    // };
+
+    // let tablecolomns = compute_function(
+    //   "biaoge",
+    //   main_component_zhuliebiao_title_arr
+    // );
+    // // console.log(tablecolomns);
+
+    function name(params) {
+      console.log(params)
+      // console.log(arguments);
+    }
+    // let obj = { a: 1 }
+    // obj.a = 2
+    // name(obj)
+    //  name()
+    //  name([1,2])
+    let arr = [3, 4, 5]
+    //  console.log(...arr);
+    // name(...arr)
+
+
+    // async function asyncFunction() {
+    //   console.log('asyncFunction started -2');
+    //   await asyncWait();
+    //   console.log('asyncFunction after await -7');  // 微任务2
+    // }
+
+    // function asyncWait() {
+    //   return new Promise((resolve) => {  //微任务1
+    //     console.log('asyncWait started -3');
+    //     setTimeout(() => {  //宏任务2
+    //       console.log('setTimeout completed -6');
+    //       resolve();
+    //     }, 0);
+    //   });
+    // }
+
+    // console.log('script started-1');
+    // setTimeout(() => {  //宏任务1
+    //   console.log('setTimeout outside of asyncFunction -5');
+    // }, 0);
+
+    // asyncFunction();
+
+    // console.log('script ended -4');
+
+    // function getAutoParams(opts) {
+    //   let res = {};
+    //   let {
+    //     keys,
+    //     obj,
+    //     cb
+    //   } = opts;
+    //   keys.forEach(x => {
+    //     if (x) {
+    //       res[`${obj}.${x}`] = cb;
+    //     }
+    //   })
+    //   return res;
+
+    // }
+    // let res = getAutoParams({
+    //   keys: ["current", "pageSize", "sort", "orderBy",],
+    //   obj: "pagination",
+    //   cb: function () {
+    //     // let timer = null
+    //     return function () {
+    //       console.log(77);
+    //       // clearTimeout(timer)
+    //       // timer = setTimeout(() => this.initTableData(), 100)
+    //     }
+    //   }()
+    // })
+    // console.log(res,'res');
+    // async function handleClick( ) {
+    //   await 
+    // }
+      api_finance.post_queryFinZrDayTotal(params).then((res) => {
+
+        let code = this.$lodash.get(res,"data.code")
+        let data = this.$lodash.get(res,'data.data',{})
+        let arr
+      })
+  </script>
+</body>
+
+</html>

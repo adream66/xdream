@@ -1,0 +1,217 @@
+## 商户后台登录模块分为对内对外
+
+##### ![](logo模块.nico.assets/login-1646815679170.png)
+
+#### 对内登录调用的接口：
+
+```
+接口请求时在src/api/index.js内判断调用的接口模块环境是对内还是对外，并返回对应要调用的模块接口
+如果请求的模块等于对内，那就返回对内的模块接口，如果不是就返回对外的相对应的请求模块
+```
+
+![](logo模块.nico.assets/api判断.png)
+
+**1.yewu5     API    商户 登录接口**
+
+-  /loginApp   //登录  使用post方法
+
+- 接口携带的参数：
+
+  ```js
+  userInfo = {
+  appId: 10008
+  password: "e10adc3949ba59abbe56e057f20f883e"  //使用了md5 加密
+  tokenCode: "1"
+  userCode: "shtest"
+  }
+  //  将参数存储到本地  $q.sessionStorage.set("userInfo", userInfo);
+  //  存储到vuex this.set_user_info(userInfo);
+  判断userCode是否含有"BW"字符串，如果有,
+  页面呈现时跳转显示 src/components/common/bet_slip/index.vue页面。//注单查询
+  如果没有就跳转 src/pages/internal/home/index.vue  //首页
+  ```
+
+  ![](logo模块.nico.assets/login接口.png)
+
+接口返回参数：
+
+```
+判断接口返回的resources里面的appid与携带的appid是否相同，如果相同就将对应的appid下的modules的name取值存放进数组，得到该用户的菜单配置项，存储到vuex和本地
+```
+
+![](logo模块.nico.assets/登录接口返回参数.png)
+
+##### 2.yewu8    业务  业务商户(panda-merchant-order)
+
+- /order/account/findReTryRecord  //数据中心-交易记录查询-待处理交易记录     使用post方法
+- 页面头部导航区域 使用quasar 的QBreadcrumbs面包屑组件 
+- 交易记录 账变记录 待处理交易 切换使用了Ant Design vue的tabs标签页来实现的
+- 表格区域是用Ant Design vue 的table来实现
+- 接口携带的参数:
+- ![](logo模块.nico.assets/数据中心-交易记录查询.png)
+
+##### 3.yewu9   业务  业务商户(merchant-manage)   
+
+- /manage/news/getLightNews     //跑马灯消息   组件路径：src/layouts/old\internal/header/marquee.vue
+
+-  跑马灯使用vue-seamless-scroll  这是一个基于Vue.js的简单无缝滚动组件。
+
+- 接口携带的参数：
+
+  ```
+  code状态码 list返回的表格数据 nen跑马灯消息数量 non 跑马灯公告数量
+  鼠标点击跑马灯当前信息 :
+  判断当前用户的userCode是否含有"BW",不是就将信息存储到vuex中this.set_message()，
+  判断消息类型如果是消息，就跳转"我的消息"模块-src/pages/message_center/mymessage/index.vue，
+  如果是公告就跳转"公告栏模块"---src/components/common/bulletin/index.vue
+  ```
+
+  ![](logo模块.nico.assets/跑马灯.png)
+
+##### 4.yewu5   API  商户 登录接口
+
+![](logo模块.nico.assets/退出登录接口.png)
+
+- /logout  退出接口   使用get方法
+- 退出成功后，清除本地的sessionStorage里面的"userInfo"参数信息，以及清除vuex页面并跳转至登录页面
+
+##### 5.yewu8    业务  业务商户(panda-merchant-order)
+
+- /order/home/queryBetToday  //今日投注信息     使用post方法
+
+- 币种明细弹窗 对应页面  src/pages/internal/home/component/dialogUser.vue
+
+- 接口携带的参数：
+
+- ```
+  betAmount 投注额   betNum 投注笔数  settleAmount 派彩额 profit盈利额
+  ```
+
+![](logo模块.nico.assets/今日投注信息.png)
+
+- /order/home/queryUserToday      今日用户信息  使用post方法
+
+- 币种明细弹窗 对应页面  src/pages/external/home/component/dialogBet.vue
+
+- 接口携带的参数：
+
+- ```
+  addUser 新增用户数  betUserAmount 投注用户数 briskUse 活跃投注用户数 registerAmount  注册用户数
+  ```
+
+  ![](logo模块.nico.assets/今日用户信息.png)
+
+- order/home/userOrderDay14       30天投注量趋势   使用post方法
+
+- 图表使用v-charts实现
+
+- 待后续补充。。。。。。。。。
+
+#### 对外调用的接口：
+
+##### 1.yewu17     //#业务  业务商户-分控(merchant-admin)   使用post方法
+
+接口返回参数以及请求接口：
+
+![](logo模块.nico.assets/对外登录.png)
+
+##### 2.yewu17     //#业务  业务商户-分控(merchant-admin)   使用post方法
+
+/admin/noticeNew/noticeDetail   公告栏详情   登录成功就弹出公告详情弹窗显示公告详情
+
+接口返回参数以及请求接口：
+
+![](logo模块.nico.assets/对外登录公告栏.png)
+
+##### 3.yewu17   //#业务  业务商户-分控(merchant-admin) 使用post方法
+
+/admin/noticeNew/getLightNews   //跑马灯消息
+
+对应的页面：
+
+```
+会进行判断获取到的消息类型，点击的消息类型如果等于2的话，就跳转至公告栏页面，反之跳转我的消息页面
+src/components/common/mymessage/index.vue  //我的消息
+src/components/common/bulletin/index.vue  //公告栏
+```
+
+返回的接口参数：
+
+![](logo模块.nico.assets/对外跑马灯.png)
+
+对内对外都使用了：
+
+import { i18n } from "src/boot/i18n";
+
+import { mapActions } from "vuex";
+
+import logomixin from "src/mixins/external/common/logomixin.js";
+
+import { api_login} from "src/api/index.js";
+
+import Browser from "src/util/module/browser.js";
+
+import md5 from "js-md5";
+
+对外另外还使用了：
+
+import { api_auth } from "src/api/index.js";
+
+import { api_login,api_account } from "src/api/index.js";
+
+##### 对内页面对应方法：
+
+- brower.js  做浏览器 适配
+- handleSubmit（）使用md5  密码加密
+- set_login_account（）  判断 测试环境、隔离环境、默认账号登录  设置登陆账户
+- initLogin（）登录请求处理
+- validate（）表单验证
+-  goToPassword（） 修改密码        对应页面：src/page/logi/internal/module/password.vue
+-   goToNewpassword （）忘记密码 对应页面   src/page/logi/internal/module/newpassword.vue
+
+##### 对外页面对应方法：
+
+- goToPassword（）  修改密码    
+
+  ```
+  使用router.push跳转页面   对应页面：src/page/logi/external/module/password.vue 
+  ```
+
+- goToNewpassword（） 忘记密码 
+
+  ```
+  使用router.push跳转页面  对应页面   src/page/logi/external/module/newpassword.vue
+  ```
+
+- xiufu_quanxian()  修复权限 身份验证 
+
+  ```
+  调用  /admin/role/addRoleMenu // 角色分配菜单 接口 使用post方法传入params参数
+  ```
+
+- handleSubmit（）使用md5  密码加密
+
+```
+在登陆请求处理之前，把用户输入的密码进行加密使用到了md5,然后将params传入登录请求的方法中
+```
+
+- handle_init_getQueryConditionSetting（）商户查询条件设置
+- initLogin（） 登录请求处理
+
+```
+登录成功获取接口返回数据，token, user, noticeId, rest，拉取异常的交易记录，重置数据，将获取到的用户信息以及token存储到VUEX里面
+```
+
+- first_router_menus（）第一次进入页面的路由 
+
+```
+对外登录菜单，不进入home页面，获取到用户的第一个可以显示的二级菜单
+判断用户是否有对应的二级菜单，如果有就返回对应菜单的路由，如果没有就返回一级菜单
+```
+
+- set_login_account（）  判断 测试环境、隔离环境、默认账号登录
+
+```
+如果是生产环境，就返回false,如果是测试环境，就使用admin1账号密码登录，如果是隔离环境，就使用oubao账号密码登录。
+```
+

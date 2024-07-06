@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+body{
+    background-color: gray;
+}
+
+img{
+    display: block;
+    margin-bottom: 50px;
+    width: 400px;
+    height: 400px;
+}
+    </style>
+</head>
+<body>
+    <img  data-price="20" data-src="https://img.36krcdn.com/20190808/v2_1565254363234_img_jpg">
+    <img  data-src="https://img.36krcdn.com/20190905/v2_1567641293753_img_png">
+    <img   data-src="https://img.36krcdn.com/20190905/v2_1567640518658_img_png">
+    <img   data-src="https://img.36krcdn.com/20190905/v2_1567642423719_img_000">
+    <img   data-src="https://img.36krcdn.com/20190905/v2_1567642425030_img_000">
+    <img  data-src="https://img.36krcdn.com/20190905/v2_1567642425101_img_000">
+    <img data-src="https://img.36krcdn.com/20190905/v2_1567642425061_img_000">
+    <img  data-src="https://img.36krcdn.com/20190904/v2_1567591358070_img_jpg">
+    <img  data-src="https://img.36krcdn.com/20190905/v2_1567641974410_img_000">
+    <img  data-src="https://img.36krcdn.com/20190905/v2_1567641974454_img_000">
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+        const imgs = document.getElementsByTagName('img');
+        const num = imgs.length;
+        let n = 0;
+        // DOMContentLoaded 是一个在文档解析完成后的事件，但不包括样式表、图片和iframe的完成加载。这是JavaScript中的一个非常重要的事件，因为它标志着DOM树已经构建完成，此时可以通过JavaScript访问和操作DOM元素。
+        document.addEventListener('DOMContentLoaded',()=>{
+            loadImage()
+        })
+        function loadImage(){
+            console.log('haha')
+            // 是否在可视区?
+            let screenHeight = document.documentElement.clientHeight;// 一整个屏幕的高度 宽度
+            console.log("一整个屏幕的高度 宽度",screenHeight);
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;  // 滚动条上的偏移量（滚动的距离） 不同浏览器兼容问题
+            console.log("滚动条上的偏移量",scrollTop);
+            for(let i = 0; i < num; i++){
+                console.log(imgs[1].offsetTop);
+                if(imgs[i].offsetTop < screenHeight + scrollTop){
+                    // console.log(imgs[i].dataset.src);
+                    // imgs[i].src = imgs[i].dataset.src; //或者
+                    imgs[i].src = imgs[i].getAttribute('data-src')
+                    n = i + 1;
+                    if(n === num){
+                        console.log('所有图片均以加载完毕')
+                        window.removeEventListener('scroll',throttleLayLoad)
+                        // window.removeEventListener('scroll',loadImage)
+                    }
+                }
+            }
+        }
+        // window.addEventListener("scroll",loadImage)
+        const throttleLayLoad = _.throttle(loadImage,500);
+        window.addEventListener('scroll',throttleLayLoad);
+    </script>
+</body>
+</html>
